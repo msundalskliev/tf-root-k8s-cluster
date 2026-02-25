@@ -1,61 +1,47 @@
-# Generic Kubernetes Cluster Module
+# tf-root-k8s-cluster
 
-Terraform module for provisioning Kind clusters with optional Helm chart deployment.
+Spins up a Kind cluster with whatever you need.
 
-## What it creates
+## What you get
 
-- Kind cluster with configurable ports
+- Kind cluster with ports you specify
 - Kubernetes namespace
 - Optional Helm chart deployment
 
 ## Usage
 
-### With terraformlib
-
 ```bash
-# Plan
+# Plan it
 terraformlib plan -c config.yaml -m manifest.yaml -s tf-root-k8s-cluster
 
-# Apply (uses existing generated files)
+# Deploy it
 terraformlib apply -s tf-root-k8s-cluster
 
-# Destroy
+# Kill it
 terraformlib destroy -s tf-root-k8s-cluster
 ```
 
-### Direct Terraform
+## Direct terraform
 
 ```bash
 terraform init
-terraform plan -var-file=.terraform/terraform.json
 terraform apply -var-file=.terraform/terraform.json
 ```
 
 ## Development
 
 ```bash
-# Install pre-commit
 pip install pre-commit
 pre-commit install
-
-# Run checks
 pre-commit run --all-files
 ```
 
 ## Variables
 
-- `namespace` - Kubernetes namespace name
-- `cluster.name` - Kind cluster name
-- `cluster.ports` - Map of ports to expose (e.g. {grafana: 30080})
-- `helm_chart.enabled` - Deploy Helm chart (true/false)
+- `namespace` - Where to put your stuff
+- `cluster.name` - What to call your cluster
+- `cluster.ports` - Ports to expose (like {grafana: 30080})
+- `helm_chart.enabled` - Deploy a chart or not
 - `helm_chart.name` - Chart name
-- `helm_chart.path` - Path to chart
-- `helm_chart.values` - Chart values
-
-## Files
-
-- `main.tf` - Resources
-- `variables.tf` - Variable definitions
-- `providers.tf` - Provider configuration
-- `backend.tf` - State backend
-- `.gitignore` - Excludes generated files
+- `helm_chart.path` - Where to find it
+- `helm_chart.values` - Chart config

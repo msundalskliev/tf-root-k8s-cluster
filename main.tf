@@ -28,16 +28,3 @@ resource "kubernetes_namespace" "main" {
   depends_on = [kind_cluster.main]
 }
 
-resource "helm_release" "main" {
-  count     = var.helm_chart.enabled ? 1 : 0
-  name      = var.helm_chart.name
-  chart     = var.helm_chart.path
-  namespace = kubernetes_namespace.main.metadata[0].name
-
-  values = [
-    yamlencode(var.helm_chart.values)
-  ]
-
-  depends_on = [kubernetes_namespace.main]
-}
-

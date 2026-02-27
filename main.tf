@@ -4,10 +4,10 @@ resource "kind_cluster" "main" {
 
   kind_config {
     kind        = "Cluster"
-    api_version = "kind.x-k8s.io/v1alpha4"
+    api_version = var.kind_config.api_version
 
     node {
-      role = "control-plane"
+      role = var.kind_config.node_role
 
       dynamic "extra_port_mappings" {
         for_each = var.cluster.ports
@@ -23,6 +23,12 @@ resource "kind_cluster" "main" {
 resource "kubernetes_namespace" "main" {
   metadata {
     name = var.namespace
+    labels = merge(
+      var.tags,
+      {
+        "name" = var.namespace
+      }
+    )
   }
 
   depends_on = [kind_cluster.main]

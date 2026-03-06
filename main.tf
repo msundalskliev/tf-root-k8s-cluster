@@ -33,4 +33,3 @@ resource "kubernetes_namespace" "main" {
 
   depends_on = [kind_cluster.main]
 }
-

@@ -6,6 +6,7 @@ variable "namespace" {
 variable "cluster" {
   type = object({
     name  = string
+    image = optional(string)
     ports = map(number)
   })
   description = "Cluster configuration"

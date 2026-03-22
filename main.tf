@@ -1,6 +1,7 @@
 # Create kind cluster
 resource "kind_cluster" "main" {
   name = var.cluster.name
+  node_image = var.cluster.image
 
   kind_config {
     kind        = "Cluster"

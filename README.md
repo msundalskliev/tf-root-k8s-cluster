@@ -40,6 +40,8 @@ pre-commit run --all-files
 
 Checkov runs security scans on Terraform code to catch issues early.
 
+This repository also tags successful merged changes using the merge workflow.
+
 ## Variables
 
 - `namespace` - Where to put your stuff

@@ -42,6 +42,8 @@ Checkov runs security scans on Terraform code to catch issues early.
 
 This repository also tags successful merged changes using the merge workflow.
 
+The merge workflow can also comment back on the pull request with the created tag.
+
 ## Variables
 
 - `namespace` - Where to put your stuff

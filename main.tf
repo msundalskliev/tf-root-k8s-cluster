@@ -21,7 +21,7 @@ resource "kind_cluster" "main" {
   }
 }
 
-resource "kubernetes_namespace" "main" {
+resource "kubernetes_namespace_v1" "main" {
   metadata {
     name = var.namespace
     labels = merge(
